@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <script src="./js/marked.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <title>A Markdown Previewer</title>
+
+    <script>
+      function updatePreview() {
+        let previewElement = document.getElementById("preview");
+        let editorValue = document.getElementById("editor").value;
+        let markedUpHTML = marked(editorValue);
+        previewElement.innerHTML = markedUpHTML;
+      }
+
+      function setDefault() {
+      	
+        let defaultText = `\
+# freecodecamp Solutions:
+## Build a markdown previewer
+[Learn more about the freecodecamp.org project](https://www.freecodecamp.org/learn/front-end-libraries/front-end-libraries-projects/build-a-drum-machine).
+
+<dl>
+  <dt>Definition list</dt>
+  <dd>Is something people use sometimes.</dd>
+
+  <dt>Markdown in HTML</dt>
+  <dd>Does *not* work **very** well. Use HTML <em>tags</em>.</dd>
+</dl>
+
+\`This is an example of inline code\`
+
+\`\`\`
+function exampleOf() {
+  return multiLineCodeBlock;
+}
+\`\`\`
+
+- This
+- is
+- an
+- example
+- of
+- list
+- items
+
+> This is an example of block quote
+
+![freecodecamp](https://upload.wikimedia.org/wikipedia/commons/3/39/FreeCodeCamp_logo.png)
+
+**This is an example of Bolded Text**`;
+
+        let editorField = document.getElementById("editor");
+        let previewElement = document.getElementById("preview");
+        editorField.value = defaultText;
+        previewElement.innerHTML = marked(defaultText)}
+    </script>
+  </head>
+
+
+  <body onload="setDefault()" class="bg-primary">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col text-center text-white bg-primary my-3">
+          <h1>Markdown Previewer</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-5 bg-primary d-flex flex-column">
+          <h2 class="text-white text-center my-3">Editor</h2>
+          <div class="form-group flex-grow-1 d-flex flex-column">
+            <textarea id="editor" onkeyup="updatePreview()" class="form-control flex-grow-1 bg-dark text-white"></textarea>
+          </div>
+        </div>
+        <div class="col-7 bg-primary">
+          <h2 class="text-white text-center my-3">Preview</h2>
+          <div class="bg-light p-3" id="preview"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Freecodecamp JavaScript -->
+    <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+  </body>
+</html>
